@@ -199,6 +199,148 @@ body {
   height: 100%;
 }
 
+/* Interactive demos */
+.demo-intro {
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+}
+
+.demo-mobile-note {
+  display: none;
+  text-align: center;
+  color: #4a4a4a;
+  background: #f6f8fa;
+  border: 1px dashed #c9cfd6;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.demo-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.demo-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #fff;
+  border: 1px solid #e1e5ea;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  color: #363636;
+  text-align: center;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.demo-thumb:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.demo-thumb:focus-visible {
+  outline: 3px solid #2f6f9f;
+  outline-offset: 2px;
+}
+
+.demo-thumb[aria-selected="true"] {
+  border-color: #1f6fd1;
+  box-shadow: 0 0 0 3px #1f6fd1;
+}
+
+.demo-thumb-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f6f8fa;
+  border-radius: 4px;
+  color: #7a8592;
+  font-size: 1.8rem;
+  object-fit: cover;
+}
+
+.demo-thumb-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.demo-thumb-label em {
+  display: block;
+  font-weight: 400;
+  color: #7a7a7a;
+}
+
+.demo-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1b1c1f;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#unity-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.demo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  text-align: center;
+  color: #cbd2d9;
+  background: #1b1c1f;
+  pointer-events: none;
+}
+
+.demo-overlay[hidden] {
+  display: none;
+}
+
+.demo-progress {
+  width: min(320px, 70%);
+  height: 6px;
+  background: #3a3d42;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.demo-progress-bar {
+  width: 0;
+  height: 100%;
+  background: #4da3ff;
+  transition: width 0.2s;
+}
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.demo-help {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4a4a4a;
+}
+
 /* BibTeX */
 .bibtex-header {
   display: flex;
@@ -225,6 +367,14 @@ body {
 @media screen and (max-width: 768px) {
   .pipeline figcaption {
     text-align: left !important;
+  }
+  /* Unity WebGL needs a mouse and keyboard and a lot of memory: no demo on phones. */
+  .demo-mobile-note {
+    display: block;
+  }
+  .demo-thumbs,
+  .demo-stage {
+    display: none;
   }
   .publication-title {
     font-size: 2.25rem !important;

@@ -239,6 +239,72 @@
   </div>
 </section>
 
+<section class="section" id="demos">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Interactive Demos</h2>
+        <p class="demo-intro">
+          Pick a scene, then change a number or reconnect a node in the graph and watch the
+          behavior change live. These run in your browser with the same behavior graphs as the
+          full system, without the agents.
+        </p>
+      </div>
+    </div>
+
+    <p class="demo-mobile-note">
+      The interactive demos need a computer with a mouse and keyboard. Open this page on a
+      desktop browser to try them.
+    </p>
+
+    <div class="demo-thumbs" role="tablist" aria-label="Demo scenes">
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="6">
+        <img class="demo-thumb-img" src="./static/images/demo/scene6.webp" width="640" height="360" loading="lazy"
+             alt="A minecart on a raised wooden track beside a river, with a lower landing bridge ahead.">
+        <span class="demo-thumb-label">Minecart jump</span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="11">
+        <img class="demo-thumb-img" src="./static/images/demo/scene11.webp" width="640" height="360" loading="lazy"
+             alt="A cyan shooter cube and a basketball on a gym floor, with a hoop on the far wall.">
+        <span class="demo-thumb-label">Basketball shootout</span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="17">
+        <img class="demo-thumb-img" src="./static/images/demo/scene17.webp" width="640" height="360" loading="lazy"
+             alt="A vending machine with a soda can and a brown pile on the floor beside it.">
+        <span class="demo-thumb-label">Vending machine <em>(find the bug)</em></span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="25">
+        <img class="demo-thumb-img" src="./static/images/demo/scene25.webp" width="640" height="360" loading="lazy"
+             alt="A warehouse loading station: a crate on a conveyor, a lift platform, and START and RESET buttons.">
+        <span class="demo-thumb-label">Loading station</span>
+      </button>
+    </div>
+
+    <div class="demo-stage" id="demo-stage">
+      <div class="demo-player" id="demo-player">
+        <canvas id="unity-canvas" tabindex="-1" aria-label="Interactive demo"></canvas>
+        <div class="demo-overlay" id="demo-overlay">
+          <p id="demo-overlay-text">Pick a scene above to load the demo.</p>
+          <div class="demo-progress" id="demo-progress" hidden>
+            <div class="demo-progress-bar" id="demo-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-controls" id="demo-controls" hidden>
+        <button class="button is-small is-rounded" type="button" data-demo-action="ToggleGraph" id="demo-toggle-graph">Hide graph</button>
+        <button class="button is-small is-rounded" type="button" data-demo-action="ResetScene">Reset scene</button>
+        <button class="button is-small is-rounded" type="button" data-demo-action="RestoreGraph">Restore graph</button>
+      </div>
+
+      <p class="demo-help" id="demo-help" hidden>
+        Click objects in the scene to trigger them. In the graph, edit a number, or drag from one
+        socket to another to rewire. <strong>Restore graph</strong> brings back the original.
+      </p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <div class="bibtex-header">
