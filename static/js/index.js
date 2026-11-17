@@ -5,7 +5,7 @@
 // ("WebDemo"). `ext` is the compression suffix on the data/framework/wasm files: ".gz" for Gzip,
 // ".unityweb" if the build names them that way (Decompression Fallback), "" if uncompressed.
 document.addEventListener('DOMContentLoaded', function () {
-  var BUILD = { dir: 'demo/Build/', name: 'WebDemo', ext: '.gz' };
+  var BUILD = { dir: 'demo/Build/', name: 'WebDemo', ext: '.unityweb' };
   var OBJECT = 'WebDemoController';
 
   var player = document.getElementById('demo-player');
@@ -99,13 +99,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Debugging aid: with ?debug in the address, window.__demoSend('DumpLayout') etc. is available.
+  if (/[?&]debug\b/.test(window.location.search)) window.__demoSend = send;
+
+  // The scene camera and the graph view were framed for the old window size, so re-frame both
+  // once the resizing stops. (Under 769px wide the demo is hidden by the stylesheet.)
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (!instancePromise) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      instancePromise.then(function (instance) {
+        instance.SendMessage(OBJECT, 'Reframe');
+      }).catch(function () {});
+    }, 400);
+  });
+
   thumbs.forEach(function (thumb) {
     thumb.addEventListener('click', function () {
       thumbs.forEach(function (t) { t.setAttribute('aria-selected', t === thumb ? 'true' : 'false'); });
       graphVisible = true;
       if (toggleGraph) toggleGraph.textContent = 'Hide graph';
       send('LoadScenario', thumb.getAttribute('data-scene')).then(function () {
-        canvas.focus();
+        canvas.focus({ preventScroll: true });
       }).catch(function () { /* already reported in the overlay */ });
     });
   });
@@ -117,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         graphVisible = !graphVisible;
         button.textContent = graphVisible ? 'Hide graph' : 'Show graph';
       }
-      send(action).then(function () { canvas.focus(); }).catch(function () {});
+      send(action).then(function () { canvas.focus({ preventScroll: true }); }).catch(function () {});
     });
   });
 });
@@ -132,8 +148,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var events = ['pointerdown', 'keydown', 'touchstart'];
   var unmute = function (e) {
+    // A click on the video itself is left to its own controls.
+    if (e && e.target === video) {
+      events.forEach(function (name) { document.removeEventListener(name, unmute, true); });
+      return;
+    }
+    // Only unmute while the teaser is on screen. Otherwise a first click far down the page
+    // (the interactive demo, say) would start sound from a video the visitor cannot see.
+    var box = video.getBoundingClientRect();
+    var viewHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (box.bottom <= 0 || box.top >= viewHeight) return;
+
     events.forEach(function (name) { document.removeEventListener(name, unmute, true); });
-    if (e && e.target === video) return;
     video.muted = false;
     video.play().catch(function () {});
   };
