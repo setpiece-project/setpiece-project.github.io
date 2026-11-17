@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var instancePromise = null;
   var graphVisible = true;
 
+  // Middle-mouse drag pans the graph. Without this the browser starts its own autoscroll and the
+  // page scrolls along. preventDefault on the mousedown (not the pointer event) cancels it, and
+  // does not stop Unity from receiving the same event.
+  canvas.addEventListener('mousedown', function (e) { if (e.button === 1) e.preventDefault(); });
+  canvas.addEventListener('auxclick', function (e) { if (e.button === 1) e.preventDefault(); });
+
   function showOverlay(text, withProgress) {
     overlay.hidden = false;
     overlayText.textContent = text;
