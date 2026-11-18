@@ -270,10 +270,13 @@ body {
   line-height: 1.25;
 }
 
+/* The scene sits on top of the graph, so the player is taller than 16:9. */
 .demo-player {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 6 / 5;
   background: #1b1c1f;
   border-radius: 10px;
   overflow: hidden;
@@ -324,8 +327,40 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.9rem;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* Solid, high-contrast buttons so the controls stand out from the page and the player. */
+.demo-controls .button.is-small {
+  height: auto;
+  padding: 0.55em 1.3em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: #1f6fd1;
+  border: 1px solid #1f6fd1;
+  box-shadow: 0 2px 6px rgba(31, 111, 209, 0.35);
+  transition: transform 0.12s, box-shadow 0.12s, background-color 0.12s;
+}
+
+.demo-controls .button.is-small:hover {
+  color: #fff;
+  background: #185bb0;
+  border-color: #185bb0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(31, 111, 209, 0.45);
+}
+
+.demo-controls .button.is-small:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(31, 111, 209, 0.4);
+}
+
+.demo-controls .button.is-small:focus-visible {
+  color: #fff;
+  outline: 3px solid #9cc4f4;
+  outline-offset: 2px;
 }
 
 .demo-help {
