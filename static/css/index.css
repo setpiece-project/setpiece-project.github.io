@@ -399,6 +399,17 @@ body {
   list-style: disc;
 }
 
+.demo-howto kbd {
+  padding: 0.05em 0.45em;
+  font: inherit;
+  font-size: 0.85em;
+  font-weight: 600;
+  background: #fff;
+  border: 1px solid #c9cfd6;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+}
+
 .demo-howto li + li {
   margin-top: 0.25rem;
 }
