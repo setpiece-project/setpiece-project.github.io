@@ -140,6 +140,11 @@ body {
   margin-top: 2.5rem;
 }
 
+/* The robot clip sits directly under the "coming soon" box. */
+.paper-video .robot-video {
+  margin-top: 1.5rem;
+}
+
 /* Pipeline figure */
 .pipeline {
   margin-top: 2.5rem;
