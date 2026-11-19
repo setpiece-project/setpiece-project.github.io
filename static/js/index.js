@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var progress = document.getElementById('demo-progress');
   var progressBar = document.getElementById('demo-progress-bar');
   var controls = document.getElementById('demo-controls');
-  var help = document.getElementById('demo-help');
   var toggleGraph = document.getElementById('demo-toggle-graph');
   var thumbs = Array.prototype.slice.call(document.querySelectorAll('.demo-thumb'));
 
@@ -85,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(function (instance) {
         overlay.hidden = true;
         controls.hidden = false;
-        help.hidden = false;
         return instance;
       })
       .catch(function (err) {

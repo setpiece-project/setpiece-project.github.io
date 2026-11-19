@@ -368,11 +368,45 @@ body {
   outline-offset: 2px;
 }
 
-.demo-help {
-  margin-top: 0.75rem;
-  text-align: center;
+/* How-to panel under the demo intro: what the buttons do and how to use the graph. */
+.demo-howto {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  text-align: left;
   font-size: 0.9rem;
-  color: #4a4a4a;
+  color: #363636;
+  background: #f6f8fa;
+  border: 1px solid #e1e5ea;
+  border-radius: 10px;
+}
+
+.demo-howto h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1f6fd1;
+}
+
+.demo-howto ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+
+.demo-howto li + li {
+  margin-top: 0.25rem;
+}
+
+@media screen and (max-width: 1023px) {
+  .demo-howto {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* BibTeX */
@@ -407,6 +441,7 @@ body {
     display: block;
   }
   .demo-thumbs,
+  .demo-howto,
   .demo-stage {
     display: none;
   }
