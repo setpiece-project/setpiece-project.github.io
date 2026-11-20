@@ -368,8 +368,16 @@ body {
   outline-offset: 2px;
 }
 
-/* How-to panel under the demo intro: what the buttons do and how to use the graph. */
+/* How-to panel: what the buttons do and how to use the graph. On a narrower desktop it sits
+   above the player; on a wide one it uses the spare room beside it (see the media query below). */
+.demo-stage {
+  display: flex;
+  flex-direction: column;
+}
+
 .demo-howto {
+  order: -1;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
@@ -418,6 +426,49 @@ body {
 @media screen and (max-width: 1023px) {
   .demo-howto {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Wide screens: the player keeps its centred 900px column and the how-to panel takes the spare
+   room to its right, level with the top of the player. */
+@media screen and (min-width: 1480px) {
+  /* The page's container is 1152px; widen this section so the panel has room beside the player. */
+  #demos .container.is-max-widescreen {
+    max-width: 1440px;
+  }
+
+  .demo-thumbs {
+    max-width: 1152px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .demo-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 900px) minmax(0, 1fr);
+    grid-template-areas:
+      ". controls ."
+      ". player howto";
+    align-items: start;
+  }
+
+  .demo-controls {
+    grid-area: controls;
+  }
+
+  .demo-player {
+    grid-area: player;
+  }
+
+  .demo-howto {
+    grid-area: howto;
+    order: 0;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    width: auto;
+    max-width: 230px;
+    margin: 0 0 0 1.25rem;
+    font-size: 0.8rem;
   }
 }
 
