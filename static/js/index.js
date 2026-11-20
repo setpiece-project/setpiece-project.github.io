@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(function (instance) {
         overlay.hidden = true;
-        controls.hidden = false;
+        // The buttons are visible from the start but disabled until there is a demo to control.
+        Array.prototype.forEach.call(controls.querySelectorAll('button'), function (b) { b.disabled = false; });
         return instance;
       })
       .catch(function (err) {

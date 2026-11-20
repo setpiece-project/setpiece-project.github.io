@@ -353,7 +353,7 @@ body {
   transition: transform 0.12s, box-shadow 0.12s, background-color 0.12s;
 }
 
-.demo-controls .button.is-small:hover {
+.demo-controls .button.is-small:hover:not([disabled]) {
   color: #fff;
   background: #185bb0;
   border-color: #185bb0;
@@ -361,9 +361,16 @@ body {
   box-shadow: 0 4px 10px rgba(31, 111, 209, 0.45);
 }
 
-.demo-controls .button.is-small:active {
+.demo-controls .button.is-small:active:not([disabled]) {
   transform: translateY(0);
   box-shadow: 0 1px 3px rgba(31, 111, 209, 0.4);
+}
+
+/* Shown from the start but dimmed until a scene has loaded. */
+.demo-controls .button.is-small[disabled] {
+  opacity: 0.4;
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
 .demo-controls .button.is-small:focus-visible {
