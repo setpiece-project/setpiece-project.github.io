@@ -371,13 +371,14 @@ body {
 /* How-to panel under the demo intro: what the buttons do and how to use the graph. */
 .demo-howto {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto 1.5rem;
-  padding: 1rem 1.25rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 720px;
+  margin: 0 auto 1.25rem;
+  padding: 0.75rem 1.1rem;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
   color: #363636;
   background: #f6f8fa;
   border: 1px solid #e1e5ea;
@@ -385,7 +386,7 @@ body {
 }
 
 .demo-howto h3 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.3rem;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -411,7 +412,7 @@ body {
 }
 
 .demo-howto li + li {
-  margin-top: 0.25rem;
+  margin-top: 0.1rem;
 }
 
 @media screen and (max-width: 1023px) {
