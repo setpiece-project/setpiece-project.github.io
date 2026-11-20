@@ -336,6 +336,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.demo-controls[hidden] {
+  display: none;
+}
+
 /* Solid, high-contrast buttons so the controls stand out from the page and the player. */
 .demo-controls .button.is-small {
   height: auto;
@@ -429,8 +433,8 @@ body {
   }
 }
 
-/* Wide screens: the player keeps its centred 900px column and the how-to panel takes the spare
-   room to its right, level with the top of the player. */
+/* Wide screens: the player keeps its centred 900px column. The how-to panel takes the spare room
+   to its right, level with the top of the player, with the control buttons stacked under it. */
 @media screen and (min-width: 1480px) {
   /* The page's container is 1152px; widen this section so the panel has room beside the player. */
   #demos .container.is-max-widescreen {
@@ -446,18 +450,28 @@ body {
   .demo-stage {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 900px) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-      ". controls ."
-      ". player howto";
+      ". player howto"
+      ". player controls";
     align-items: start;
-  }
-
-  .demo-controls {
-    grid-area: controls;
   }
 
   .demo-player {
     grid-area: player;
+  }
+
+  .demo-controls {
+    grid-area: controls;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    max-width: 230px;
+    margin: 1rem 0 0 1.25rem;
+  }
+
+  .demo-controls .button.is-small {
+    justify-content: center;
   }
 
   .demo-howto {
