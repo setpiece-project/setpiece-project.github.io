@@ -142,7 +142,12 @@ body {
 
 /* The robot clip sits directly under the "coming soon" box. */
 .paper-video .robot-video {
+  display: block;
+  width: 100%;
+  height: auto;
   margin-top: 1.5rem;
+  border-radius: 10px;
+  background: #000;
 }
 
 /* Pipeline figure */
