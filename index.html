@@ -131,7 +131,94 @@
       </div>
     </div>
     <!--/ Abstract. -->
+  </div>
+</section>
 
+<section class="section" id="demos">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Interactive Demos</h2>
+        <p class="demo-intro">
+          Pick a scene, then change a number or reconnect a node in the graph and watch the
+          behavior change live.
+        </p>
+      </div>
+    </div>
+
+    <p class="demo-mobile-note">
+      The interactive demos need a computer with a mouse and keyboard. Open this page on a
+      desktop browser to try them.
+    </p>
+
+    <div class="demo-thumbs" role="tablist" aria-label="Demo scenes">
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="6">
+        <img class="demo-thumb-img" src="./static/images/demo/scene6.webp" width="640" height="360" loading="lazy"
+             alt="A minecart on a raised wooden track beside a river, with a lower landing bridge ahead.">
+        <span class="demo-thumb-label">Minecart jump</span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="11">
+        <img class="demo-thumb-img" src="./static/images/demo/scene11.webp" width="640" height="360" loading="lazy"
+             alt="A cyan shooter cube and a basketball on a gym floor, with a hoop on the far wall.">
+        <span class="demo-thumb-label">Basketball shootout</span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="17">
+        <img class="demo-thumb-img" src="./static/images/demo/scene17.webp" width="640" height="360" loading="lazy"
+             alt="A vending machine with a soda can and a tied black trash bag on the floor beside it.">
+        <span class="demo-thumb-label">Vending machine</span>
+      </button>
+      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="25">
+        <img class="demo-thumb-img" src="./static/images/demo/scene25.webp" width="640" height="360" loading="lazy"
+             alt="A warehouse loading station: a crate on a conveyor, a lift platform, and START and RESET buttons.">
+        <span class="demo-thumb-label">Loading station</span>
+      </button>
+    </div>
+
+    <div class="demo-stage" id="demo-stage">
+      <div class="demo-controls" id="demo-controls">
+        <button class="button is-small is-rounded" type="button" data-demo-action="ToggleGraph" id="demo-toggle-graph" disabled>Hide graph</button>
+        <button class="button is-small is-rounded" type="button" data-demo-action="FitGraph" disabled>Fit graph</button>
+        <button class="button is-small is-rounded" type="button" data-demo-action="ResetScene" disabled>Reset scene</button>
+        <button class="button is-small is-rounded" type="button" data-demo-action="RestoreGraph" disabled>Restore graph</button>
+      </div>
+
+      <div class="demo-player" id="demo-player">
+        <canvas id="unity-canvas" tabindex="-1" aria-label="Interactive demo"></canvas>
+        <div class="demo-overlay" id="demo-overlay">
+          <p id="demo-overlay-text">Pick a scene above to load the demo.</p>
+          <div class="demo-progress" id="demo-progress" hidden>
+            <div class="demo-progress-bar" id="demo-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="demo-howto" aria-label="How to use the demo">
+        <div class="demo-howto-col">
+          <h3>Buttons</h3>
+          <ul>
+            <li><strong>Hide / Show graph</strong>: toggle the graph panel</li>
+            <li><strong>Fit graph</strong>: bring every node into view</li>
+            <li><strong>Reset scene</strong>: start over</li>
+            <li><strong>Restore graph</strong>: undo your graph edits</li>
+          </ul>
+        </div>
+        <div class="demo-howto-col">
+          <h3>Scene and graph</h3>
+          <ul>
+            <li><strong>Scene:</strong> click objects to trigger them</li>
+            <li><strong>Zoom:</strong> mouse wheel, or two-finger scroll</li>
+            <li><strong>Pan:</strong> middle-mouse drag, or <kbd>Shift</kbd> + drag</li>
+            <li><strong>Connect:</strong> drag from output to input socket</li>
+            <li><strong>Disconnect:</strong> right-click a socket</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered paper-video">
       <div class="column is-four-fifths">
@@ -240,89 +327,6 @@
       </div>
     </div>
     <!--/ Key features. -->
-  </div>
-</section>
-
-<section class="section" id="demos">
-  <div class="container is-max-widescreen">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Interactive Demos</h2>
-        <p class="demo-intro">
-          Pick a scene, then change a number or reconnect a node in the graph and watch the
-          behavior change live.
-        </p>
-      </div>
-    </div>
-
-    <p class="demo-mobile-note">
-      The interactive demos need a computer with a mouse and keyboard. Open this page on a
-      desktop browser to try them.
-    </p>
-
-    <div class="demo-thumbs" role="tablist" aria-label="Demo scenes">
-      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="6">
-        <img class="demo-thumb-img" src="./static/images/demo/scene6.webp" width="640" height="360" loading="lazy"
-             alt="A minecart on a raised wooden track beside a river, with a lower landing bridge ahead.">
-        <span class="demo-thumb-label">Minecart jump</span>
-      </button>
-      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="11">
-        <img class="demo-thumb-img" src="./static/images/demo/scene11.webp" width="640" height="360" loading="lazy"
-             alt="A cyan shooter cube and a basketball on a gym floor, with a hoop on the far wall.">
-        <span class="demo-thumb-label">Basketball shootout</span>
-      </button>
-      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="17">
-        <img class="demo-thumb-img" src="./static/images/demo/scene17.webp" width="640" height="360" loading="lazy"
-             alt="A vending machine with a soda can and a tied black trash bag on the floor beside it.">
-        <span class="demo-thumb-label">Vending machine</span>
-      </button>
-      <button class="demo-thumb" type="button" role="tab" aria-selected="false" data-scene="25">
-        <img class="demo-thumb-img" src="./static/images/demo/scene25.webp" width="640" height="360" loading="lazy"
-             alt="A warehouse loading station: a crate on a conveyor, a lift platform, and START and RESET buttons.">
-        <span class="demo-thumb-label">Loading station</span>
-      </button>
-    </div>
-
-    <div class="demo-stage" id="demo-stage">
-      <div class="demo-controls" id="demo-controls">
-        <button class="button is-small is-rounded" type="button" data-demo-action="ToggleGraph" id="demo-toggle-graph" disabled>Hide graph</button>
-        <button class="button is-small is-rounded" type="button" data-demo-action="FitGraph" disabled>Fit graph</button>
-        <button class="button is-small is-rounded" type="button" data-demo-action="ResetScene" disabled>Reset scene</button>
-        <button class="button is-small is-rounded" type="button" data-demo-action="RestoreGraph" disabled>Restore graph</button>
-      </div>
-
-      <div class="demo-player" id="demo-player">
-        <canvas id="unity-canvas" tabindex="-1" aria-label="Interactive demo"></canvas>
-        <div class="demo-overlay" id="demo-overlay">
-          <p id="demo-overlay-text">Pick a scene above to load the demo.</p>
-          <div class="demo-progress" id="demo-progress" hidden>
-            <div class="demo-progress-bar" id="demo-progress-bar"></div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="demo-howto" aria-label="How to use the demo">
-        <div class="demo-howto-col">
-          <h3>Buttons</h3>
-          <ul>
-            <li><strong>Hide / Show graph</strong>: toggle the graph panel</li>
-            <li><strong>Fit graph</strong>: bring every node into view</li>
-            <li><strong>Reset scene</strong>: start over</li>
-            <li><strong>Restore graph</strong>: undo your graph edits</li>
-          </ul>
-        </div>
-        <div class="demo-howto-col">
-          <h3>Scene and graph</h3>
-          <ul>
-            <li><strong>Scene:</strong> click objects to trigger them</li>
-            <li><strong>Zoom:</strong> mouse wheel, or two-finger scroll</li>
-            <li><strong>Pan:</strong> middle-mouse drag, or <kbd>Shift</kbd> + drag</li>
-            <li><strong>Connect:</strong> drag from output to input socket</li>
-            <li><strong>Disconnect:</strong> right-click a socket</li>
-          </ul>
-        </div>
-      </aside>
-    </div>
   </div>
 </section>
 
