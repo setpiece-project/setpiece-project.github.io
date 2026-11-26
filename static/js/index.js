@@ -120,9 +120,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 400);
   });
 
+  // The frame's title bar names the scene that is selected.
+  var sceneName = document.getElementById('demo-scene-name');
+  function showSceneName(thumb) {
+    var label = thumb.querySelector('.demo-thumb-label');
+    if (sceneName && label) sceneName.textContent = label.textContent.trim();
+  }
+
   thumbs.forEach(function (thumb) {
     thumb.addEventListener('click', function () {
       thumbs.forEach(function (t) { t.setAttribute('aria-selected', t === thumb ? 'true' : 'false'); });
+      showSceneName(thumb);
       graphVisible = true;
       if (toggleGraph) toggleGraph.textContent = 'Hide graph';
       send('LoadScenario', thumb.getAttribute('data-scene')).then(function () {
@@ -139,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var desktopLayout = !window.matchMedia || window.matchMedia('(min-width: 769px)').matches;   // below that the demo is hidden
   if (defaultThumb && demosSection && desktopLayout) {
     defaultThumb.setAttribute('aria-selected', 'true');
+    showSceneName(defaultThumb);
     var loadDefault = function () {
       if (!instancePromise) defaultThumb.click();
     };
@@ -193,14 +202,30 @@ document.addEventListener('DOMContentLoaded', function () {
     video.play().catch(function () {});
   };
 
-  video.muted = false;
-  var attempt = video.play();
-  if (attempt && attempt.catch) {
-    attempt.catch(function () {
-      video.muted = true;
-      video.play().catch(function () {});
-      events.forEach(function (e) { document.addEventListener(e, unmute, true); });
-    });
+  function start() {
+    video.muted = false;
+    var attempt = video.play();
+    if (attempt && attempt.catch) {
+      attempt.catch(function () {
+        video.muted = true;
+        video.play().catch(function () {});
+        events.forEach(function (e) { document.addEventListener(e, unmute, true); });
+      });
+    }
+  }
+
+  // Start once the teaser is mostly on screen, not at page load: it sits below the title block,
+  // so most visitors would otherwise download and play 43 MB they have not scrolled to yet.
+  if ('IntersectionObserver' in window) {
+    var watcher = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) {
+        watcher.disconnect();
+        start();
+      }
+    }, { threshold: 0.35 });
+    watcher.observe(video);
+  } else {
+    start();
   }
 });
 

@@ -2,19 +2,26 @@
 
 Project page for *Co-Authoring with Agents: Live, Transparent Authoring of Immersive Scenes in VR and on the Desktop*.
 
-It's a static site: preview it with `python -m http.server` in this folder, or serve it with GitHub Pages (Settings → Pages → Deploy from branch → `main` / root).
+It is a static, hand-written site (no framework, no build step): `index.html`, `static/css/site.css`,
+`static/js/site.js` (page behavior) and `static/js/index.js` (the Unity WebGL demo, teaser and BibTeX button).
+Preview it with any static server that supports HTTP Range requests (needed to seek in the videos), or serve it
+with GitHub Pages (Settings → Pages → Deploy from branch → `main` / root).
 
-## Filling in media
+## Layout
 
-Each grey dashed box (`.media-slot`) is a placeholder. The HTML comment above each one shows the `<video>`/`<img>` tag to swap in. Put files in `static/images/` and `static/videos/`.
+The page order is: hero, teaser, Abstract, Interactive Demo, Video, System, Features, Citation. Colors, fonts
+and spacing are CSS variables at the top of `site.css`. The demo's element IDs and `data-*` attributes are used by
+`index.js` (see the comments there); keep them if you restyle the demo.
 
 ## When the paper is public
 
-- Replace "Anonymous Authors" with author blocks (template in an HTML comment).
-- Add `href`s to the arXiv / Code buttons (the Code URL is in an HTML comment) and remove `disabled` and the `(soon)` tag.
-- To add a video: uncomment the Video section in `index.html`, set the YouTube ID, and add a Video button back to the link row.
+- Replace the authors block (a comment in the hero shows the anonymous version) or keep the names.
+- Add `href`s to the arXiv / Code buttons (the Code URL is in an HTML comment), remove `aria-disabled` and the
+  `(soon)` tag.
+- Paper video: replace the "Video coming soon" box in the Video section with the embed (an HTML comment shows it).
 - Replace the BibTeX entry.
 
-## License
+## Credits
 
-Built on the [Nerfies](https://github.com/nerfies/nerfies.github.io) template. The website is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+Typefaces: Fraunces, Inter and JetBrains Mono (SIL Open Font License), loaded from Google Fonts.
+Copyright 2026 the SetPiece authors.
