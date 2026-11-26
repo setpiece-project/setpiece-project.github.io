@@ -131,6 +131,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // The minecart scene is the default. It is marked selected straight away, but the 16 MB player
+  // is only fetched once the demo section is about to scroll into view, so visitors who stop
+  // reading above it do not pay for it. A scene the visitor picks first takes over.
+  var defaultThumb = thumbs.filter(function (t) { return t.getAttribute('data-scene') === '6'; })[0];
+  var demosSection = document.getElementById('demos');
+  var desktopLayout = !window.matchMedia || window.matchMedia('(min-width: 769px)').matches;   // below that the demo is hidden
+  if (defaultThumb && demosSection && desktopLayout) {
+    defaultThumb.setAttribute('aria-selected', 'true');
+    var loadDefault = function () {
+      if (!instancePromise) defaultThumb.click();
+    };
+    if ('IntersectionObserver' in window) {
+      var watcher = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) {
+          watcher.disconnect();
+          loadDefault();
+        }
+      }, { rootMargin: '600px 0px' });
+      watcher.observe(demosSection);
+    } else {
+      loadDefault();
+    }
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('[data-demo-action]'), function (button) {
     button.addEventListener('click', function () {
       var action = button.getAttribute('data-demo-action');
